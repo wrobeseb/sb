@@ -1,0 +1,25 @@
+
+.menu {
+	padding: 0px;
+	padding-bottom: 5px;
+	margin-left: 10px;
+}
+
+.menu li {
+	list-style: none;
+}
+
+.menu li a {
+	text-decoration: none;
+	color: white;
+	font-family: sans-serif;
+	background-color: #A1A1A1;
+}
+
+* html .menu li a { display: inline; width: 100%; margin: 1px 0px; }
+
+
+.menu li a:HOVER {
+	background-color: #949494;
+	color: white;
+}

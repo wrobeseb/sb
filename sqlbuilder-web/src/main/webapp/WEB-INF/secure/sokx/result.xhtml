@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form id="result">	
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" warnClass="alert" layout="table"/>		
+		</c:if>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Komunikat
+			</legend>
+			<p>
+				<div class="sokxDetails left" >
+					<h:outputLabel for="sokxId" class="label">Id Sokx: </h:outputLabel>
+					<h:outputText id="sokxId" value="#{sokxCommand.sokxId}"></h:outputText>
+					<br/>
+					<h:outputLabel for="objectId" class="label">Id objektu: </h:outputLabel>
+					<h:outputText id="objectId" value="dfgfgj"></h:outputText>
+					<br/>
+					<h:outputLabel for="createdDt" class="label">Data utworzenia: </h:outputLabel>
+					<h:outputText id="createdDt" value="2012-10-10 12:12:12"></h:outputText>
+					<br/>
+					<h:outputLabel for="modifiedDt" class="label">Data modyfikacji: </h:outputLabel>
+					<h:outputText id="modifiedDt" value="2012-10-10 12:12:12"></h:outputText>
+					<br/>
+					<h:outputLabel for="status" class="label">Status: </h:outputLabel>
+					<h:outputText id="status" value="dfgfgj"></h:outputText>
+				</div>
+				<div class="left">
+					<div style="margin-left: 5px;">
+						<h:inputText id="errorCode" style="width: 513px; margin: 0 0 5px 0;"></h:inputText><br/>
+						<h:inputTextarea style="width: 503px; height: 75px; margin: 0;" id="errorDesc"></h:inputTextarea>
+					</div>
+				</div>
+			</p>
+			<p>
+				<h:inputTextarea class="textarea span-20" id="messageBody" value="#{sokxCommand.messageBody}" style="white-space: nowrap;"/>
+			</p>
+			<p class="submit">
+				<h:commandButton action="back" value="Cofnij"></h:commandButton>
+				<h:commandButton action="save" value="Zapisz" style="margin: 0 5px;"></h:commandButton>
+			</p>
+		</fieldset>
+	</h:form>
+	
+  </ui:define>
+</ui:composition>

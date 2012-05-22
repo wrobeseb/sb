@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>sqlbuilder</artifactId>
+    <groupId>net.wrobeseb</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>sqlbuilder-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>WROBESEB || SQLBUILDER || PARENT</name>
+  
+  <properties>
+  	<spring.version>3.0.5.RELEASE</spring.version>
+  	<spring-web-flow.version>2.3.0.RELEASE</spring-web-flow.version>
+  	<spring-security.version>3.0.2.RELEASE</spring-security.version>
+  
+  	<cglib.version>2.2</cglib.version>
+  	<javassist.version>3.14.0-GA</javassist.version>
+  	
+  	<el-api.version>2.2</el-api.version>
+  	<jsp-api.version>2.2</jsp-api.version>
+  	<servlet-api.version>3.0-alpha-1</servlet-api.version>
+  	<jstl.version>1.2</jstl.version>
+  
+  	<jsf.version>1.2_13</jsf.version>
+  	<facelets.version>1.1.15.B1</facelets.version>
+  	<richfaces.version>3.3.3.Final</richfaces.version>
+  	<myfaces-tomahawk.version>1.1.12</myfaces-tomahawk.version>
+  	
+  	<slf4j.version>1.6.1</slf4j.version>
+  	<log4j.version>1.2.16</log4j.version>
+
+	<persistence-api.version>1.0</persistence-api.version>
+	<hibernate-core.version>3.6.4.Final</hibernate-core.version>
+	<hibernate-validator.version>4.0.2.GA</hibernate-validator.version>
+
+	<oracle-jdbc.version>6</oracle-jdbc.version>
+    <postgresql-jdbc.version>9.0-801.jdbc4</postgresql-jdbc.version>
+    <commons-dbcp.version>1.4</commons-dbcp.version>
+    <jackcess.version>1.2.7</jackcess.version>
+  
+  	<commons-io.version>2.3</commons-io.version>
+  
+  	<junit.version>4.7</junit.version>
+  	<jmock.version>2.5.1</jmock.version>
+  	<selenium.version>2.21.0</selenium.version>
+
+  	<tomcat-plugin.version>1.1</tomcat-plugin.version>
+  	<jetty-plugin.version>8.1.3.v20120416</jetty-plugin.version>
+  	<selenium-plugin.verison>2.2</selenium-plugin.verison>
+  	<sonar-pluing.version>2.0</sonar-pluing.version>
+  	<surefire-plugin.version>2.12</surefire-plugin.version>
+  </properties>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		
+  		<!-- Spring -->
+  		
+  		<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-tx</artifactId>
+	  		<version>${spring.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-orm</artifactId>
+	  		<version>${spring.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-webmvc</artifactId>
+	  		<version>${spring.version}</version>
+	  	</dependency>
+  		
+  		<!-- Spring webflow -->
+  		
+  		<dependency>
+	  		<groupId>org.springframework.webflow</groupId>
+	  		<artifactId>spring-webflow</artifactId>
+	  		<version>${spring-web-flow.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework.webflow</groupId>
+	  		<artifactId>spring-faces</artifactId>
+	  		<version>${spring-web-flow.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- Spring security -->
+	  	
+	  	<dependency>
+	  		<groupId>org.springframework.security</groupId>
+	  		<artifactId>spring-security-core</artifactId>
+	  		<version>${spring-security.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework.security</groupId>
+	  		<artifactId>spring-security-web</artifactId>
+	  		<version>${spring-security.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework.security</groupId>
+	  		<artifactId>spring-security-config</artifactId>
+	  		<version>${spring-security.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework.security</groupId>
+	  		<artifactId>spring-security-taglibs</artifactId>
+	  		<version>${spring-security.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- AOP -->
+	  	
+  	  	<dependency>
+	  		<groupId>cglib</groupId>
+	  		<artifactId>cglib</artifactId>
+	  		<version>${cglib.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.javassist</groupId>
+	  		<artifactId>javassist</artifactId>
+	  		<version>${javassist.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- Servlets -->
+	  	
+	  	<dependency>
+	  		<groupId>javax.el</groupId>
+	  		<artifactId>el-api</artifactId>
+	  		<version>${el-api.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.servlet.jsp</groupId>
+	  		<artifactId>jsp-api</artifactId>
+	  		<version>${jsp-api.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.servlet</groupId>
+	  		<artifactId>servlet-api</artifactId>
+	  		<version>${servlet-api.version}</version>
+	  	</dependency>
+		<dependency>
+	  		<groupId>javax.servlet</groupId>
+	  		<artifactId>jstl</artifactId>
+	  		<version>${jstl.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- JSF -->
+	  	
+	  	<dependency>
+	  		<groupId>com.sun.facelets</groupId>
+	  		<artifactId>jsf-facelets</artifactId>
+	  		<version>${facelets.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.faces</groupId>
+	  		<artifactId>jsf-api</artifactId>
+	  		<version>${jsf.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.faces</groupId>
+	  		<artifactId>jsf-impl</artifactId>
+	  		<version>${jsf.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.richfaces.framework</groupId>
+	  		<artifactId>richfaces-impl</artifactId>
+	  		<version>${richfaces.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.richfaces.ui</groupId>
+	  		<artifactId>richfaces-ui</artifactId>
+	  		<version>${richfaces.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.apache.myfaces.tomahawk</groupId>
+	  		<artifactId>tomahawk</artifactId>
+	  		<version>${myfaces-tomahawk.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- Logging -->
+	  	
+  	  	<dependency>
+	  		<groupId>org.slf4j</groupId>
+	  		<artifactId>slf4j-api</artifactId>
+	  		<version>${slf4j.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.slf4j</groupId>
+	  		<artifactId>slf4j-log4j12</artifactId>
+	  		<version>${slf4j.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>log4j</groupId>
+	  		<artifactId>log4j</artifactId>
+	  		<version>${log4j.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- ORM -->
+	  	
+	  	<dependency>
+	  		<groupId>javax.persistence</groupId>
+	  		<artifactId>persistence-api</artifactId>
+	  		<version>${persistence-api.version}</version>
+	  	</dependency>
+	  	
+	  	<dependency>
+	  		<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-core</artifactId>
+	  		<version>${hibernate-core.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-validator</artifactId>
+	  		<version>${hibernate-validator.version}</version>
+	  	</dependency>
+	  	
+	  	<!-- DB libs -->
+	  	
+	  	<dependency>
+  			<groupId>postgresql</groupId>
+	  		<artifactId>postgresql</artifactId>
+	  		<version>${postgresql-jdbc.version}</version>
+  		</dependency>
+  		<dependency>
+	  		<groupId>oracle</groupId>
+	  		<artifactId>ojdbc</artifactId>
+	  		<version>${oracle-jdbc.version}</version>
+	  	</dependency>
+  		<dependency>
+	  		<groupId>commons-dbcp</groupId>
+	  		<artifactId>commons-dbcp</artifactId>
+	  		<version>${commons-dbcp.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>com.healthmarketscience.jackcess</groupId>
+	  		<artifactId>jackcess</artifactId>
+	  		<version>${jackcess.version}</version>
+	  	</dependency>
+
+		<!-- Commons -->
+		
+		<dependency>
+	  		<groupId>commons-io</groupId>
+	  		<artifactId>commons-io</artifactId>
+	  		<version>${commons-io.version}</version>
+	  	</dependency>
+
+	  	<!-- Test Libs -->
+	  	
+  		<dependency>
+  			<groupId>junit</groupId>
+  			<artifactId>junit</artifactId>
+  			<version>${junit.version}</version>
+  		</dependency>
+  		<dependency>
+	  		<groupId>org.jmock</groupId>
+	  		<artifactId>jmock</artifactId>
+	  		<version>${jmock.version}</version>
+	  	</dependency>
+  		<dependency>
+  			<groupId>org.jmock</groupId>
+  			<artifactId>jmock-junit4</artifactId>
+  			<version>${jmock.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.seleniumhq.selenium</groupId>
+  			<artifactId>selenium-java</artifactId>
+  			<version>${selenium.version}</version>
+  		</dependency>
+
+  	</dependencies>
+  </dependencyManagement>
+  
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<plugin>
+  				<groupId>org.codehaus.mojo</groupId>
+  				<artifactId>tomcat-maven-plugin</artifactId>
+  				<version>${tomcat-plugin.version}</version>
+  			</plugin>
+  			<plugin>
+  				<groupId>org.mortbay.jetty</groupId>
+  				<artifactId>jetty-maven-plugin</artifactId>
+  				<version>${jetty-plugin.version}</version>
+  			</plugin>
+  			<plugin>
+  				<groupId>org.codehaus.mojo</groupId>
+  				<artifactId>selenium-maven-plugin</artifactId>
+  				<version>${selenium-plugin.verison}</version>
+  			</plugin>
+  			<plugin>
+  				<groupId>org.codehaus.mojo</groupId>
+  				<artifactId>sonar-maven-plugin</artifactId>
+  				<version>${sonar-pluing.version}</version>
+  			</plugin>
+  			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-surefire-plugin</artifactId>
+		        <version>${surefire-plugin.version}</version>
+		    </plugin>
+  		</plugins>
+  	</pluginManagement>
+  </build>
+  
+  
+</project>

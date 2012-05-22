@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+			    xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+			    xmlns:rich="http://richfaces.org/rich"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form id="query">	
+		<script language="javascript">
+		  	function contentAssist(control, evt) { 
+		  	  var evt = (evt) ? evt : ((event) ? event : null); 
+		  	  if(evt.keyCode == 17) {
+		  		return true
+		  	  };
+		  	  return evt;
+		  	}
+		  	</script>
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" warnClass="alert" layout="table"/>		
+		</c:if>
+		<h:inputHidden id="queryCommand_query_id" value="#{queryCommand.query.id}"/>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Zapytanie
+			</legend>
+			<p>
+				<h:inputText class="text" id="queryCommand_query_name" value="#{queryCommand.query.name}" />
+			</p>
+			<p>
+				<a4j:outputPanel id="queryPanel">
+					<h:inputTextarea class="textarea span-20" id="queryCommand_query_query" value="#{queryCommand.query.query}" style="white-space: nowrap;">
+						<!-- <a4j:support event="onkeyup" action="contentAssist" onsubmit="if(event.keyCode != 17) return true;" reRender="#{flowRenderFragments}"/>-->
+					</h:inputTextarea>
+				</a4j:outputPanel>
+			</p>
+			<p class="submit">
+				<h:commandButton action="execute" value="Uruchom"></h:commandButton>
+				<h:commandButton action="save" value="Zapisz" style="margin: 0 5px;"></h:commandButton>
+				<c:if test="${not empty queryCommand.result}">
+					<h:commandButton action="exportAction" value="Eksportuj"></h:commandButton>
+				</c:if>
+			</p>
+		</fieldset>
+	</h:form>
+	<c:if test="${not empty queryCommand.result}">
+	<hr />
+		<div class="append-bottom" style="overflow: auto; width: 789px; max-height: 300px;">
+			<table cellpadding="0" cellspacing="0" style="border-spacing: 1px;">
+				<thead>
+					<tr>
+						<ui:repeat var="cell" value="#{queryCommand.columnNames}">
+							<th>
+								#{cell}
+							</th>
+						</ui:repeat>
+					</tr>
+				</thead>
+				<tbody>
+				<ui:repeat var="row" value="#{queryCommand.result}">
+					<tr>
+						<ui:repeat var="cell" value="#{row.values}">
+							<td>
+								<div style="height: 18px; float: left; margin-right:5px; white-space: nowrap;">
+									#{cell}
+								</div>
+							</td>
+						</ui:repeat>
+					</tr>
+				</ui:repeat>
+				</tbody>
+			</table>
+		</div>
+		<p class="quiet">Znaleziono: #{queryCommand.resultCount}</p>
+	</c:if>
+  </ui:define>
+</ui:composition>

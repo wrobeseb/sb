@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form>
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" warnClass="alert" layout="table"/>		
+		</c:if>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Named quary
+			</legend>
+			<h:dataTable id="namedQueries" var="query" value="#{historyCommand.listOfNamedQueries}" style="border-spacing: 1px;">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					#{query.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nazwa</f:facet>
+					#{query.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Zapytanie</f:facet>
+					<h:outputLabel style="font-weight: normal;" rendered="#{fn:length(query.query) gt 65}">#{fn:substring(query.query, 0, 65)}...</h:outputLabel>
+					<h:outputLabel style="font-weight: normal;" rendered="#{fn:length(query.query) lt 65}">#{query.query}</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Data wprowadzenia</f:facet>
+					<div style="width: 120px;">
+					<h:outputText value="#{query.addDt}">
+					<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="CET"/>
+					</h:outputText>
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ostatnie uruchomienie</f:facet>
+					<div style="width: 130px;">
+					<h:outputText value="#{query.lastUsed}">
+					<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="CET"/>
+					</h:outputText>
+					</div>
+				</h:column>
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:commandLink id="execute" value="Uruchom" action="execute">
+						<f:setPropertyActionListener value="#{query}" target="#{historyCommand.selected}"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+			<p class="quiet">Znaleziono: #{historyCommand.listOfNamedQueriesCount}</p>
+		</fieldset>
+	</h:form>
+  </ui:define>
+</ui:composition>

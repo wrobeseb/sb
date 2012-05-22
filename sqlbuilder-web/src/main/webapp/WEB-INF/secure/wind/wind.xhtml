@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    xmlns:t="http://myfaces.apache.org/tomahawk"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form id="wind" enctype="multipart/form-data">
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" layout="table"/>		
+		</c:if>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Windykacje
+			</legend>
+			<div class="span-14">
+				<div class="span-4 first" style="margin-top: 2px;">
+					<label for="windCommand_mdbFile">Plik mdb</label>
+				</div>
+				<div class="span-10 last">
+					<t:inputFileUpload id="windCommand_mdbFile" value="#{windCommand.mdbFile}"/>
+				</div>
+				<div class="span-14" style="margin-top: 10px;">
+					<h:commandButton action="generate" value="Generuj"></h:commandButton>
+				</div>
+			</div>
+		</fieldset>
+	</h:form>
+  </ui:define>
+</ui:composition>

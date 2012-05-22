@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<on-start>
+		<evaluate expression="builderController.initCommand()" result="flowScope.builderCommand"/>
+	</on-start>	
+	
+	<view-state id="builder" model="builderCommand">
+		<transition on="execute" to="executeQuery">
+			<set name="flowScope.query" value="builderCommand.query"/>
+		</transition>
+		<transition on="valueChangeAction">
+			<evaluate expression="builderController.buildQuery(builderCommand)"/>
+			<render fragments="builder:queryPanel" />
+		</transition>
+	</view-state>
+	
+	<subflow-state id="executeQuery" subflow="secure/query">
+		<input name="queryBody" value="query"/>
+	</subflow-state>
+</flow>

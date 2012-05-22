@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form id="exportForm">
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" layout="table"/>		
+		</c:if>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Eksport wyniku zapytania
+			</legend>
+			<div class="span-4">
+				<div class="span-2 first" style="padding-top: 6px;">
+					<h:outputLabel for="queryCommand_exportInfo_exportFileType" value="Typ pliku:" style="padding-top: 6px;"/>
+				</div>
+				<div class="span-2 last">
+					<h:selectOneMenu id="queryCommand_exportInfo_exportFileType" value="#{queryCommand.exportInfo.exportFileType}">
+						<f:selectItem itemLabel="*.mdb" itemValue="1"/>
+						<f:selectItem itemLabel="*.txt" itemValue="2"/>
+					</h:selectOneMenu>
+				</div>
+				<!--  <div class="span-2 first" style="padding-top: 6px;">
+					<h:outputLabel for="queryCommand_exportInfo_exportType" value="Do kogo:"/>
+				</div>
+				<div class="span-2 last">
+					<h:selectManyListbox id="queryCommand_exportInfo_emailAddresses" value="#{queryCommand.exportInfo.emailAddresses}">
+						<f:selectItem itemLabel="Bartlomiej.Cywinski@telekomunikacja.pl" itemValue="Bartlomiej.Cywinski@telekomunikacja.pl"/>
+						<f:selectItem itemLabel="Tomasz.Szanca@telekomunikacja.pl" itemValue="Tomasz.Szanca@telekomunikacja.pl"/>
+						<f:selectItem itemLabel="Sebastian.Wrobel@telekomunikacja.pl" itemValue="Sebastian.Wrobel@telekomunikacja.pl"/>
+						<f:selectItem itemLabel="Tomasz.Wrobel@telekomunikacja.pl" itemValue="Tomasz.Wrobel@telekomunikacja.pl"/>
+					</h:selectManyListbox>
+				</div>
+				<div class="span-2 first" style="padding-top: 10px;">
+					<h:outputLabel for="queryCommand_exportInfo_exportType" value="Do kogo:"/>
+				</div>
+				<div class="span-2 last">
+					<h:inputText class="text span-15" id="queryCommand_exportInfo_otherEmails" value="#{queryCommand.exportInfo.otherEmails}"/>
+				</div>-->
+				<div class="span-4" style="margin-top: 10px;">
+					<h:commandButton action="export" value="Eksportuj"></h:commandButton>
+					<h:commandButton action="back" value="Wróć" style="margin: 0 5px;"></h:commandButton>
+				</div>
+			</div>
+		</fieldset>
+	</h:form>
+  </ui:define>
+</ui:composition>

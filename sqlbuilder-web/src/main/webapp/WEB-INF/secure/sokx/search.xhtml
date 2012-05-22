@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:c="http://java.sun.com/jstl/core"
+			    xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+			    template="/WEB-INF/layouts/page.xhtml">
+  <ui:define name="content">
+	<h:form id="sokxSearch">	
+		<c:if test="${not empty messageContext.allMessages}">
+			<div class="prepend-top"></div>
+			<h:messages infoClass="success" errorClass="error" warnClass="alert" layout="table"/>		
+		</c:if>
+		<fieldset style="border: 0; padding: 0; margin-top: 5px;">
+			<legend>
+				Komunikacja SOKX
+			</legend>
+			<p>
+				<h:inputText class="text" id="sokxId" value="#{sokxCommand.sokxId}" />
+			</p>
+			<p class="submit">
+				<h:commandButton action="search" value="Szukaj"></h:commandButton>
+			</p>
+		</fieldset>
+	</h:form>
+  </ui:define>
+</ui:composition>

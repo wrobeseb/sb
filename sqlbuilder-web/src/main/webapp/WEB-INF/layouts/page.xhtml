@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=ISO-8859-2"/>
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/sqlBuilder.css" type="text/css"/>
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/ie.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="${request.contextPath}/resources/css/sqlBuilderIE6.css" type="text/css"/>
+	<![endif]-->
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/plugins/buttons/screen.css" type="text/css" media="screen, projection" />
+	<script type="text/javascript" src="${request.contextPath}/resources/js/jquery-1.5.2.js"/>
+	<script type="text/javascript" src="${request.contextPath}/resources/js/jquery.textarea.js"/>
+</head>
+<body>
+	<div id="page" class="container" style="min-height: 100px;">
+		<div id="header" class="span-24 prepend-top">
+			<div class="span-19">
+				<h2 class="alt">SqlBuilder</h2>
+			</div>
+			<div class="span-5 last right" style="margin-top: 30px;">
+				<sec:authorize ifAllGranted="ROLE_USER">
+					<a href="${request.contextPath}/secure/logout" style="float: right;">Logout</a>
+					<div style="float: right; margin-right: 5px;">Witaj, ${sessionScope.SPRING_SECURITY_LAST_USERNAME} | </div>
+				</sec:authorize>
+			</div>
+		</div>
+		<hr class="bottom"/>
+		<div id="menu" class="span-4 first" style="margin-right: 0;">
+			<div class="prepend-top">
+				<ui:include src="/WEB-INF/layouts/menu.xhtml"/>
+			</div>
+		</div>
+		<div id="content" class="last" style="float:left; width:789px; padding-left:10px; border-left:1px solid #ddd;">
+			<ui:insert name="content" />
+		</div>
+		<hr/>
+		<div id="footer" class="span-24 top">
+			
+		</div>
+	</div>
+</body>
+</html>

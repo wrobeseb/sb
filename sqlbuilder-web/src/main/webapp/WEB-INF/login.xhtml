@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:sf="http://www.springframework.org/tags/faces">
+      
+ 
+  
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=ISO-8859-2"/>
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/sqlBuilder.css" type="text/css"/>
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/ie.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="${request.contextPath}/resources/css/sqlBuilderIE6.css" type="text/css"/>
+	<![endif]-->
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="${request.contextPath}/resources/css/blueprint/plugins/buttons/screen.css" type="text/css" media="screen, projection" />
+</head>
+<f:view>   
+<body>
+	<div id="page" class="container">
+		<div id="header" class="span-24 prepend-top">
+			<h2 class="alt">SqlBuilder</h2>
+		</div>
+		<hr class="bottom top"/>
+		<div class="prepend-top">
+			<form name="f" action="${request.contextPath}/secure/check" method="post">
+				<c:if test="${not empty messageContext.allMessages}">
+					<div class="prepend-top"></div>
+					<h:messages infoClass="success" errorClass="error" warnClass="alert" layout="table"/>		
+				</c:if>
+				<div class="span-9" style="margin: 0 auto; float: none;">
+					<fieldset>
+						<p>
+							<label for="username">Uzytkownik:</label>
+							<input type="text" class="text" id="username" name="j_username"/>
+						</p>
+						<p>
+							<label for="password">Haslo:</label>
+							<input type='password' id="password" class="text" name='j_password'/>
+						</p>
+						<p class="right bottom">
+							<input type="submit" value="Login"/>
+						</p>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+		<hr/>
+		<div id="footer" class="span-24 top">
+			Copyright (c) 2011 WINW | About
+		</div>
+	</div>
+</body>
+</f:view>
+</html>

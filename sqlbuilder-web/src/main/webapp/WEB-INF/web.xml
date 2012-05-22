@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<context-param>
+	  	<param-name>contextConfigLocation</param-name>
+	  	<param-value>/WEB-INF/config/web-application-config.xml</param-value>
+	</context-param>
+    <context-param>
+        <param-name>facelets.DEVELOPMENT</param-name>
+   		<param-value>true</param-value>
+  	</context-param>
+	<context-param>
+	  	<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+	  	<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+	   	<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+	   	<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+	</context-param>
+	<context-param>
+      <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+      <param-value>server</param-value>
+   </context-param>
+
+	<listener>
+	  <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	<listener>
+	  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+	  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>  
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>  
+	</listener>  
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/secure/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Spring MVC Servlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value></param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Spring MVC Servlet</servlet-name>
+    <url-pattern>/app/*</url-pattern>
+    <!-- <url-pattern>/app/*</url-pattern> -->
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.faces</url-pattern>
+  </servlet-mapping>
+<filter> 
+    <display-name>RichFaces Filter</display-name> 
+    <filter-name>richfaces</filter-name> 
+    <filter-class>org.ajax4jsf.Filter</filter-class> 
+</filter> 
+<filter-mapping> 
+    <filter-name>richfaces</filter-name> 
+    <servlet-name>Spring MVC Servlet</servlet-name>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+</filter-mapping>
+<filter>
+    <filter-name>MyFacesExtensionsFilter</filter-name>
+    <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>MyFacesExtensionsFilter</filter-name>
+    <servlet-name>Spring MVC Servlet</servlet-name>
+</filter-mapping>
+</web-app>

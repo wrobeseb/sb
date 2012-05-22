@@ -1,0 +1,46 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+p {clear: both;}
+
+.sokxDetails {color:black;padding:0.8em;border:1px solid #ddd; width: 250px;}
+
+.label {margin-right: 10px;}
+
+.menu ul {
+	border: 0;
+}
+
+.menu li {
+	list-style: none;
+}
+
+.menu li a {
+	padding: 1px 10px;
+	margin: 1px 0px;
+	display: block;
+	text-decoration: none;
+	color: white;
+	font-family: sans-serif;
+	background-color: #A1A1A1;
+}
+
+.menu li a:HOVER {
+	background-color: #949494;
+}
+
+.loginBt {
+	padding: 1px 10px;
+	margin: 1px 0px;
+	display: block;
+	text-decoration: none;
+	color: white;
+	font-family: sans-serif;
+	background-color: #A1A1A1;
+}
+
+.loginBt:HOVER {
+	background-color: #949494;
+}

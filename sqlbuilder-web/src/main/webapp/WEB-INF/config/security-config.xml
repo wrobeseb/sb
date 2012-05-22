@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+		
+	<bean id="sqlBuilderAuthenticationProvider" class="net.wrobeseb.sqlbuilder.module.AuthenticationProvider"></bean>
+
+	<bean id="sqlBuilderSessionAuthenticationStrategy" class="net.wrobeseb.sqlbuilder.module.SessionAuthenticationStrategy">
+		<constructor-arg name="sessionRegistry">
+			<bean class="org.springframework.security.core.session.SessionRegistryImpl"/>
+		</constructor-arg>
+		<property name="migrateSessionAttributes" value="false"/>
+		<property name="retainedAttributes">
+			<list>
+				<value>SPRING_SECURITY_LAST_USERNAME</value>
+				<value>SPRING_SECURITY_CONTEXT</value>
+			</list>
+		</property>
+		<property name="maximumSessions" value="1"/>
+	</bean>
+
+	<bean id="authenticationEntryPoint"
+	     class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+	  <property name="loginFormUrl" value="/login"/>
+	</bean>
+
+	<bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+	  <property name="authenticationManager" ref="sqlBuilderAuthenticationManager"/>
+	  <property name="filterProcessesUrl" value="/secure/check"/>
+	  <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler"/>
+	  <property name="authenticationFailureHandler" ref="authenticationFailureHandler"/>
+	  <property name="sessionAuthenticationStrategy" ref="sqlBuilderSessionAuthenticationStrategy"/>
+	</bean>
+	
+	<bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/app/secure/welcome"/>
+	</bean>
+	
+	<bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<constructor-arg name="defaultFailureUrl" value="/login?login_error=1"/>
+		<property name="useForward" value="true"/>
+	</bean>
+	
+	<security:global-method-security pre-post-annotations="enabled"/>
+		
+	<security:http auto-config="false" entry-point-ref="authenticationEntryPoint" >
+		<security:intercept-url pattern="/secure/**" access="ROLE_USER"/>
+		<security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
+		<security:logout logout-success-url="/app/login" logout-url="/secure/logout"/> 
+	    <security:session-management invalid-session-url="/login" session-authentication-strategy-ref="sqlBuilderSessionAuthenticationStrategy"/>
+	</security:http>
+	
+	<security:authentication-manager alias="sqlBuilderAuthenticationManager">
+		<security:authentication-provider ref="sqlBuilderAuthenticationProvider"/>
+	</security:authentication-manager>
+		
+</beans>

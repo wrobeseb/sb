@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<input name="queryId" required="false"/>
+	
+	<input name="queryBody" required="false"/>
+	
+	<on-start>
+		<evaluate expression="queryController.initCommand(queryId)" result="flowScope.queryCommand"/>
+		<evaluate expression="queryController.setQueryFromBuilder(queryCommand, queryBody)"/>
+	</on-start>	
+	
+	<view-state id="query" model="queryCommand">
+		<transition on="contentAssist">
+			<render fragments="query:queryPanel" />
+		</transition>
+		<transition on="execute">
+			<evaluate expression="queryController.execute(queryCommand, messageContext, externalContext)"/>
+		</transition>
+		<transition on="save">
+			<evaluate expression="queryController.save(queryCommand, messageContext)"/>
+		</transition>
+		<transition on="exportAction" to="export"/>
+	</view-state>
+	
+	<view-state id="export" model="queryCommand">
+		<transition on="export" >
+			<evaluate expression="queryController.export(queryCommand, messageContext, flowRequestContext)"/>
+		</transition>
+		<transition on="back" to="query"/>
+	</view-state>
+	
+</flow>
